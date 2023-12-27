@@ -26,7 +26,7 @@ void loop()
   {
     // Create a JSON object and add the distance data
     StaticJsonDocument<200> doc;
-    int distance = messureDistance();
+    int distance = measureDistance();
     doc["distance"] = distance;
     serializeJson(doc, Serial);
     Serial.println();

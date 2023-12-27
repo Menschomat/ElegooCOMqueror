@@ -1,1 +1,4 @@
-float messureDistance();
+
+void voltageInit();
+float measureDistance();
+float measureVoltage();
