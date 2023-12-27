@@ -17,13 +17,10 @@ float measureDistance()
 }
 float measureVoltage()
 {
-    if (millis() - vol_measure_time > 1000) // Measured every 1000 milliseconds
-    {
-        vol_measure_time = millis();
-        float voltage = (analogRead(VOL_MEASURE_PIN) * 5) * ((10 + 1.5) / 1.5) / 1024; // Read voltage value
-                                                                                       // float voltage = (analogRead(VOL_MEASURE_PIN) * 0.0375);
-        voltage = voltage + (voltage * 0.08);
-        return voltage;
-    }
-    return -1;
+
+    vol_measure_time = millis();
+    float voltage = (analogRead(VOL_MEASURE_PIN) * 5) * ((10 + 1.5) / 1.5) / 1024; // Read voltage value
+                                                                                   // float voltage = (analogRead(VOL_MEASURE_PIN) * 0.0375);
+    voltage = voltage + (voltage * 0.08);
+    return voltage;
 }

@@ -28,6 +28,8 @@ void loop()
     StaticJsonDocument<200> doc;
     int distance = measureDistance();
     doc["distance"] = distance;
+    int voltage = measureVoltage();
+    doc["voltage"] = voltage;
     serializeJson(doc, Serial);
     Serial.println();
     timer1 = timer2;
