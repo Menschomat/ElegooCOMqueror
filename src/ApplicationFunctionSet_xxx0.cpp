@@ -14,7 +14,7 @@ enum ConquerorCarMotionControl
   RightForward,  //(7)
   RightBackward, //(8)
   stop_it        //(9)
-};               //direction方向:（1）、（2）、 （3）、（4）、（5）、（6）
+};               // direction方向:（1）、（2）、 （3）、（4）、（5）、（6）
 
 struct Application_xxx
 {
@@ -25,24 +25,23 @@ extern Application_xxx Application_ConquerorCarxxx0;
 
 static void ApplicationFunctionSet_ConquerorCarLinearMotionControl(ConquerorCarMotionControl direction, uint8_t directionRecord, uint8_t speed, uint8_t Kp, uint8_t UpperLimit)
 {
-  static float Yaw; 
+  static float Yaw;
   static float yaw_So = 0;
   static uint8_t en = 110;
   static unsigned long is_time;
   if (en != directionRecord || millis() - is_time > 10)
   {
     AppMotor.DeviceDriverSet_Motor_control(/*direction_A*/ direction_void, /*speed_A*/ 0,
-                                           /*direction_B*/ direction_void, /*speed_B*/ 0, /*controlED*/ control_enable); //Motor control
+                                           /*direction_B*/ direction_void, /*speed_B*/ 0, /*controlED*/ control_enable); // Motor control
     AppMPU6050getdata.MPU6050_dveGetEulerAngles(&Yaw);
-   
+
     is_time = millis();
   }
-   if(en != directionRecord )
-   {
+  if (en != directionRecord)
+  {
     en = directionRecord;
     yaw_So = Yaw;
-   }
-   
+  }
 
   int R = (Yaw - yaw_So) * Kp + speed;
   if (R > UpperLimit)
@@ -62,12 +61,12 @@ static void ApplicationFunctionSet_ConquerorCarLinearMotionControl(ConquerorCarM
   {
     L = 10;
   }
-  if (direction == Forward) 
+  if (direction == Forward)
   {
     AppMotor.DeviceDriverSet_Motor_control(/*direction_A*/ direction_just, /*speed_A*/ R,
                                            /*direction_B*/ direction_just, /*speed_B*/ L, /*controlED*/ control_enable);
   }
-  else if (direction == Backward) 
+  else if (direction == Backward)
   {
     AppMotor.DeviceDriverSet_Motor_control(/*direction_A*/ direction_back, /*speed_A*/ L,
                                            /*direction_B*/ direction_back, /*speed_B*/ R, /*controlED*/ control_enable);
@@ -76,7 +75,7 @@ static void ApplicationFunctionSet_ConquerorCarLinearMotionControl(ConquerorCarM
 
 static void ApplicationFunctionSet_ConquerorCarMotionControl(ConquerorCarMotionControl direction, uint8_t is_speed)
 {
-//  ApplicationFunctionSet Application_FunctionSet;
+  //  ApplicationFunctionSet Application_FunctionSet;
   static uint8_t directionRecord = 0;
   uint8_t Kp, UpperLimit;
   uint8_t speed = is_speed;
@@ -86,55 +85,55 @@ static void ApplicationFunctionSet_ConquerorCarMotionControl(ConquerorCarMotionC
   {
   case /* constant-expression */
       Forward:
-      ApplicationFunctionSet_ConquerorCarLinearMotionControl(Forward, directionRecord, speed, Kp, UpperLimit);
+    ApplicationFunctionSet_ConquerorCarLinearMotionControl(Forward, directionRecord, speed, Kp, UpperLimit);
     directionRecord = 1;
     break;
   case /* constant-expression */ Backward:
     /* code */
-      ApplicationFunctionSet_ConquerorCarLinearMotionControl(Backward, directionRecord, speed, Kp, UpperLimit);
+    ApplicationFunctionSet_ConquerorCarLinearMotionControl(Backward, directionRecord, speed, Kp, UpperLimit);
     directionRecord = 2;
     break;
   case /* constant-expression */ Left:
     /* code */
     directionRecord = 3;
     AppMotor.DeviceDriverSet_Motor_control(/*direction_A*/ direction_just, /*speed_A*/ speed,
-                                           /*direction_B*/ direction_back, /*speed_B*/ speed, /*controlED*/ control_enable); //Motor control
+                                           /*direction_B*/ direction_back, /*speed_B*/ speed, /*controlED*/ control_enable); // Motor control
     break;
   case /* constant-expression */ Right:
     /* code */
     directionRecord = 4;
     AppMotor.DeviceDriverSet_Motor_control(/*direction_A*/ direction_back, /*speed_A*/ speed,
-                                           /*direction_B*/ direction_just, /*speed_B*/ speed, /*controlED*/ control_enable); //Motor control
+                                           /*direction_B*/ direction_just, /*speed_B*/ speed, /*controlED*/ control_enable); // Motor control
     break;
   case /* constant-expression */ LeftForward:
     /* code */
     directionRecord = 5;
     AppMotor.DeviceDriverSet_Motor_control(/*direction_A*/ direction_just, /*speed_A*/ speed,
-                                           /*direction_B*/ direction_just, /*speed_B*/ speed / 2, /*controlED*/ control_enable); //Motor control
+                                           /*direction_B*/ direction_just, /*speed_B*/ speed / 2, /*controlED*/ control_enable); // Motor control
     break;
   case /* constant-expression */ LeftBackward:
     /* code */
     directionRecord = 6;
     AppMotor.DeviceDriverSet_Motor_control(/*direction_A*/ direction_back, /*speed_A*/ speed,
-                                           /*direction_B*/ direction_back, /*speed_B*/ speed / 2, /*controlED*/ control_enable); //Motor control
+                                           /*direction_B*/ direction_back, /*speed_B*/ speed / 2, /*controlED*/ control_enable); // Motor control
     break;
   case /* constant-expression */ RightForward:
     /* code */
     directionRecord = 7;
     AppMotor.DeviceDriverSet_Motor_control(/*direction_A*/ direction_just, /*speed_A*/ speed / 2,
-                                           /*direction_B*/ direction_just, /*speed_B*/ speed, /*controlED*/ control_enable); //Motor control
+                                           /*direction_B*/ direction_just, /*speed_B*/ speed, /*controlED*/ control_enable); // Motor control
     break;
   case /* constant-expression */ RightBackward:
     /* code */
     directionRecord = 8;
     AppMotor.DeviceDriverSet_Motor_control(/*direction_A*/ direction_back, /*speed_A*/ speed / 2,
-                                           /*direction_B*/ direction_back, /*speed_B*/ speed, /*controlED*/ control_enable); //Motor control
+                                           /*direction_B*/ direction_back, /*speed_B*/ speed, /*controlED*/ control_enable); // Motor control
     break;
   case /* constant-expression */ stop_it:
     /* code */
     directionRecord = 9;
     AppMotor.DeviceDriverSet_Motor_control(/*direction_A*/ direction_void, /*speed_A*/ 0,
-                                           /*direction_B*/ direction_void, /*speed_B*/ 0, /*controlED*/ control_enable); //Motor control
+                                           /*direction_B*/ direction_void, /*speed_B*/ 0, /*controlED*/ control_enable); // Motor control
     break;
   default:
     directionRecord = 10;

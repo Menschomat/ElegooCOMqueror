@@ -4,7 +4,7 @@
  * @LastEditTime: 2020-06-19 11:57:50
  * @LastEditors: Changhua
  * @Description: conqueror robot tank
- * @FilePath: 
+ * @FilePath:
  */
 
 #include "I2Cdev.h"
@@ -42,7 +42,7 @@ bool MPU6050_getdata::MPU6050_dveInit(void)
     {
       return true;
     }
-  } while (chip_id == 0X00 || chip_id == 0XFF);  
+  } while (chip_id == 0X00 || chip_id == 0XFF);
   accelgyro.initialize();
   // unsigned short times = 100; //采样次数
   // for (int i = 0; i < times; i++)
@@ -50,34 +50,34 @@ bool MPU6050_getdata::MPU6050_dveInit(void)
   //   gz = accelgyro.getRotationZ();
   //   gzo += gz;
   // }
-  // gzo /= times;  
+  // gzo /= times;
   return false;
 }
 bool MPU6050_getdata::MPU6050_calibration(void)
 {
-  unsigned short times = 100;  
+  unsigned short times = 100;
   for (int i = 0; i < times; i++)
   {
     gz = accelgyro.getRotationZ();
     gzo += gz;
   }
-  gzo /= times;  
+  gzo /= times;
 
   // gzo = accelgyro.getRotationZ();
   return false;
 }
 bool MPU6050_getdata::MPU6050_dveGetEulerAngles(float *Yaw)
 {
-  unsigned long now = millis();    
-  dt = (now - lastTime) / 1000.0;  
-  lastTime = now;                  
+  unsigned long now = millis();
+  dt = (now - lastTime) / 1000.0;
+  lastTime = now;
   gz = accelgyro.getRotationZ();
-  float gyroz = -(gz - gzo) / 131.0 * dt;  
+  float gyroz = -(gz - gzo) / 131.0 * dt;
   if (fabs(gyroz) < 0.05)
   {
     gyroz = 0.00;
   }
-  agz += gyroz;  
+  agz += gyroz;
   *Yaw = agz;
   return false;
 }

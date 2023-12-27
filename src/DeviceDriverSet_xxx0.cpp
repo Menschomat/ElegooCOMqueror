@@ -10,21 +10,20 @@ void DeviceDriverSet_Motor::DeviceDriverSet_Motor_Init(void)
   pinMode(PIN_Motor_STBY, OUTPUT);
 }
 
-
 /*
  Motor_control：AB / 方向、速度
 */
-void DeviceDriverSet_Motor::DeviceDriverSet_Motor_control(boolean direction_A, uint8_t speed_A, //A组电机参数
-                                                          boolean direction_B, uint8_t speed_B, //B组电机参数
-                                                          boolean controlED                     //AB使能允许 true
-                                                          )                                     //电机控制
+void DeviceDriverSet_Motor::DeviceDriverSet_Motor_control(boolean direction_A, uint8_t speed_A, // A组电机参数
+                                                          boolean direction_B, uint8_t speed_B, // B组电机参数
+                                                          boolean controlED                     // AB使能允许 true
+                                                          )                                     // 电机控制
 {
-  if (controlED == control_enable) //使能允许？
+  if (controlED == control_enable) // 使能允许？
   {
     digitalWrite(PIN_Motor_STBY, HIGH);
-    { //A...Right
+    { // A...Right
 
-      switch (direction_A) //方向控制
+      switch (direction_A) // 方向控制
       {
       case direction_just:
         digitalWrite(PIN_Motor_AIN_1, HIGH);
@@ -46,7 +45,7 @@ void DeviceDriverSet_Motor::DeviceDriverSet_Motor_control(boolean direction_A, u
       }
     }
 
-    { //B...Left
+    { // B...Left
       switch (direction_B)
       {
       case direction_just:

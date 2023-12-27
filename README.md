@@ -15,3 +15,12 @@
 * ir control
 * turret movements (servo control)
 * gyro sensor data
+
+```json
+{
+    "direction":0,
+    "speed": 128,
+    "color": "#00FFFF"
+}
+
+```
