@@ -2,21 +2,28 @@
 
 ### Integrated Functions:
 
+#### Input
+
 - closed-loop movement (via gyro)
 - direction control
 - speed control
 - led control
 
+#### Output
+
+- battery volatge data
+- distance sensor data
+
 ### Integration planed:
 
-- distance sensor data
 - line-tracking senor data
-- battery volatge data
 - ir control
 - turret movements (servo control)
 - gyro sensor data
 
 ### Examples
+
+#### Input
 
 | ID  | Direction     |
 | --- | ------------- |
@@ -37,11 +44,13 @@
   "color": "#00FFFF"
 }
 ```
+
 ```json
 {
-  "direction": 0,
+  "direction": 0
 }
 ```
+
 ```json
 {
   "speed": 128
@@ -51,5 +60,17 @@
 ```json
 {
   "color": "#00FFFF"
+}
+```
+
+#### Output
+
+* distance - ultrasonic-sensor measurement in cm
+* voltage - battery-voltage in v
+
+```json
+{
+  "distance": 10,
+  "voltage": 8
 }
 ```
