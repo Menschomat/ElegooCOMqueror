@@ -37,3 +37,19 @@
   "color": "#00FFFF"
 }
 ```
+```json
+{
+  "direction": 0,
+}
+```
+```json
+{
+  "speed": 128
+}
+```
+
+```json
+{
+  "color": "#00FFFF"
+}
+```
