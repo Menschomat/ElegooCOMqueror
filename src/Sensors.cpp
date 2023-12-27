@@ -1,4 +1,5 @@
 #include <HCSR04.h>
+#include "Globals.h"
 #define VOL_MEASURE_PIN A3
 // Initialize sensor that uses digital pins 13 and 12.
 const byte triggerPin = 13;
@@ -15,6 +16,7 @@ float measureDistance()
 {
     return distanceSensor.measureDistanceCm();
 }
+
 float measureVoltage()
 {
 
@@ -23,4 +25,14 @@ float measureVoltage()
                                                                                    // float voltage = (analogRead(VOL_MEASURE_PIN) * 0.0375);
     voltage = voltage + (voltage * 0.08);
     return voltage;
+}
+
+int measurePan()
+{
+    return pan;
+}
+
+int measureTilt()
+{
+    return tilt;
 }

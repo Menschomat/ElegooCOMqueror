@@ -8,17 +8,18 @@
 - direction control
 - speed control
 - led control
+- turret movements (servo control)
 
 #### Output
 
 - battery volatge data
 - distance sensor data
+- pan/tilt of servos
 
 ### Integration planed:
 
 - line-tracking senor data
 - ir control
-- turret movements (servo control)
 - gyro sensor data
 
 ### Examples

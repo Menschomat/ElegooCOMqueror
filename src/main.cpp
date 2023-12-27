@@ -29,10 +29,18 @@ void loop()
   {
     // Create a JSON object and add the distance data
     StaticJsonDocument<200> doc;
+    // Distance
     int distance = measureDistance();
     doc["distance"] = distance;
+    // Voltage
     int voltage = measureVoltage();
     doc["voltage"] = voltage;
+    // Camera
+    int pan = measurePan();
+    doc["pan"] = pan;
+    int tilt = measureTilt();
+    doc["tilt"] = tilt;
+    //---------
     serializeJson(doc, Serial);
     Serial.println();
     timer1 = timer2;
