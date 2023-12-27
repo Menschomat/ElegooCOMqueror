@@ -2,6 +2,7 @@
 #include "SerialCommunication.h"
 #include "LEDController.h"
 #include "MotorController.h"
+#include "Servos.h"
 #include "Sensors.h"
 
 int timer1 = 0;
@@ -13,6 +14,7 @@ void setup()
   initializeLEDs();
   initializeSerial();
   initializeMotors();
+  initializeServos();
 }
 
 void loop()
@@ -20,6 +22,7 @@ void loop()
   // Input Handling
   handleSerialInput();
   updateCarMotion();
+  updateServos();
   // Output Handling
   timer2 = millis();
   if (interval < abs(timer2 - timer1))

@@ -23,6 +23,8 @@ void handleSerialInput()
         updateDirection(doc);
         updateSpeed(doc);
         updateLEDColor(doc);
+        updatePan(doc);
+        updateTilt(doc);
     }
 }
 
@@ -44,6 +46,26 @@ void updateSpeed(const StaticJsonDocument<200> &doc)
         m_speed = doc["speed"] | m_speed;
         Serial.print("Received speed: ");
         Serial.println(m_speed);
+    }
+}
+
+void updatePan(const StaticJsonDocument<200> &doc)
+{
+    if (doc.containsKey("pan"))
+    {
+        pan = doc["pan"] | pan;
+        Serial.print("Received pan: ");
+        Serial.println(pan);
+    }
+}
+
+void updateTilt(const StaticJsonDocument<200> &doc)
+{
+    if (doc.containsKey("tilt"))
+    {
+        tilt = doc["tilt"] | tilt;
+        Serial.print("Received tilt: ");
+        Serial.println(tilt);
     }
 }
 

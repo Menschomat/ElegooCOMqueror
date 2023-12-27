@@ -17,5 +17,8 @@ extern CRGB leds[NUM_LEDS];
 
 extern ConquerorCarMotionControl status;
 extern int m_speed;
+//Turret
+extern int pan;
+extern int tilt;
 
 #endif // GLOBALS_H

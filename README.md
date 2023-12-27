@@ -39,27 +39,8 @@
 
 ```json
 {
-  "direction": 0,
-  "speed": 128,
-  "color": "#00FFFF"
-}
-```
-
-```json
-{
-  "direction": 0
-}
-```
-
-```json
-{
-  "speed": 128
-}
-```
-
-```json
-{
-  "color": "#00FFFF"
+  "pan": 100,
+  "tilt": 100
 }
 ```
 
