@@ -32,8 +32,8 @@ void updateCarMotion();
 
 void setup()
 {
-  initializeSerial();
   initializeLEDs();
+  initializeSerial();
   initializeMotors();
 }
 
@@ -46,20 +46,26 @@ void loop()
 void initializeSerial()
 {
   Serial.begin(9600);
+  delay(500);
 }
 
 void initializeLEDs()
 {
   FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);
   FastLED.setBrightness(20);
+  setColor(0, 0, 255);
 }
 
 void initializeMotors()
 {
+  setColor(255, 255, 0);
   AppMotor.DeviceDriverSet_Motor_Init();
   AppMPU6050getdata.MPU6050_dveInit();
   delay(2000);
   AppMPU6050getdata.MPU6050_calibration();
+  setColor(0, 255, 0);
+  delay(500);
+  setColor(0, 0, 0);
 }
 
 void handleSerialInput()
